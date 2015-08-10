@@ -118,10 +118,10 @@
 			isa = PBXGroup;
 			children = (
 				6CF380601B7949D6005E05C8 /* AppDelegate.swift */,
-				6CF380621B7949D6005E05C8 /* ViewController.swift */,
-				6CF380641B7949D6005E05C8 /* Main.storyboard */,
+				6CF3809B1B796DAC005E05C8 /* Model */,
+				6CF3809C1B796DB4005E05C8 /* View */,
+				6CF3809D1B796DBA005E05C8 /* Controller */,
 				6CF380671B7949D6005E05C8 /* Images.xcassets */,
-				6CF380691B7949D6005E05C8 /* LaunchScreen.xib */,
 				6CF3805E1B7949D6005E05C8 /* Supporting Files */,
 			);
 			path = sead40_hw2;
@@ -170,6 +170,30 @@
 				6CF380801B796B34005E05C8 /* Parse.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6CF3809B1B796DAC005E05C8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		6CF3809C1B796DB4005E05C8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6CF380641B7949D6005E05C8 /* Main.storyboard */,
+				6CF380691B7949D6005E05C8 /* LaunchScreen.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		6CF3809D1B796DBA005E05C8 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6CF380621B7949D6005E05C8 /* ViewController.swift */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
