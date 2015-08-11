@@ -40,7 +40,19 @@ class ViewController: UIViewController {
     }
     
     let camera = UIAlertAction(title: "Camera", style: UIAlertActionStyle.Default) { (alert) -> Void in
-      self.presentViewController(self.picker, animated: true, completion: nil)
+      
+      if UIImagePickerController.isSourceTypeAvailable(
+        UIImagePickerControllerSourceType.Camera) {
+          self.picker.sourceType = UIImagePickerControllerSourceType.Camera
+          // Code here
+          self.presentViewController(self.picker, animated: true, completion: nil)
+      } else {
+          self.picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        self.presentViewController(self.picker, animated: true, completion: nil)
+        println("buy a decent iPhone!!!")
+      }
+      
+      
       println("Camera selected")
     }
     
