@@ -26,6 +26,9 @@
                                 <state key="normal" title="Button">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="showAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Okr-yG-AfS"/>
+                                </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9Ms-a8-qo6">
                                 <rect key="frame" x="0.0" y="442" width="600" height="100"/>
