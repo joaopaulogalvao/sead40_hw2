@@ -11,6 +11,10 @@ import Parse
 
 class ViewController: UIViewController {
 
+  @IBOutlet weak var imageView: UIImageView!
+  
+  @IBOutlet weak var btnAlert: UIButton!
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
