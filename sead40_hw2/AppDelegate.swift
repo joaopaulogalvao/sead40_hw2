@@ -24,11 +24,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     Parse.enableLocalDatastore()
     
     // Initialize Parse.
-    Parse.setApplicationId("y6tSu5wEGfkrVHNwRoCTUPnoBzo7HnrFuyC4vmCt",
-      clientKey: "onEMFgHhSZIsNDY8A8OTO8oidXeyQkovxoB7HXF1")
+    Parse.setApplicationId(kApplicationID,
+      clientKey: kclientKey)
     
     // [Optional] Track statistics around application opens.
     PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
+    
+    let testObject = PFObject(className: "TestObject")
+    testObject["foo"] = "bar"
+    testObject.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+      println("Object has been saved.")
+    }
     
     return true
   }

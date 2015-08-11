@@ -25,11 +25,7 @@ class ViewController: UIViewController {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
     
-    let testObject = PFObject(className: "TestObject")
-    testObject["foo"] = "bar"
-    testObject.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
-      println("Object has been saved.")
-    }
+    
     
     if UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Pad {
       
@@ -47,7 +43,9 @@ class ViewController: UIViewController {
           // Code here
           self.presentViewController(self.picker, animated: true, completion: nil)
       } else {
-          self.picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        
+        
+        self.picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
         self.presentViewController(self.picker, animated: true, completion: nil)
         println("buy a decent iPhone!!!")
       }
@@ -141,11 +139,30 @@ class ViewController: UIViewController {
       }
     }
     
+    let uploadAction = UIAlertAction(title: "Upload", style: UIAlertActionStyle.Default) { (alert) -> Void in
+      let post = PFObject(className: "Post")
+      post["text"] = "bla bla bla"
+      
+      if let image = self.imageView.image, data = UIImageJPEGRepresentation(image, 1.0)
+      {
+        
+        let file = PFFile(name: "post.jpeg", data: data)
+        post["image"] = file
+        
+      }
+      
+      post.saveInBackgroundWithBlock({ (succeeded, error) -> Void in
+        
+      })
+      
+    }
+    
     alert.addAction(cancelAction)
     alert.addAction(camera)
     alert.addAction(filter1)
     alert.addAction(filter2)
     alert.addAction(filter3)
+    alert.addAction(uploadAction)
     
     self.picker.delegate = self
     self.picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
