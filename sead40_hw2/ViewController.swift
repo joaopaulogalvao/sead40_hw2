@@ -44,12 +44,51 @@ class ViewController: UIViewController {
       println("Camera selected")
     }
     
-    let filter1 = UIAlertAction(title: "Filter1", style: UIAlertActionStyle.Default) { (alert) -> Void in
-      println("Filter 1 selected")
+    let filter1 = UIAlertAction(title: "Black & White", style: UIAlertActionStyle.Default) { (alert) -> Void in
+      println("Mono/Black & White selected")
+      let image = CIImage(image: self.imageView.image!)
+      let monoEffect = CIFilter(name: "CIPhotoEffectMono")
+      monoEffect.setValue(image, forKey: kCIInputImageKey)
+      
+      //cpu context, not as fast as GPU context
+      let context = CIContext(options: nil)
+      
+      //gpu context
+      let options = [kCIContextWorkingColorSpace : NSNull()]
+      let eaglContext = EAGLContext(API: EAGLRenderingAPI.OpenGLES2)
+      let gpuContext = CIContext(EAGLContext: eaglContext, options: options)
+      
+      
+      let outputImage = monoEffect.outputImage
+      let extent = outputImage.extent()
+      let cgImage = gpuContext.createCGImage(outputImage, fromRect: extent)
+      let finalImage = UIImage(CGImage: cgImage)
+      self.imageView.image = finalImage
+      
     }
     
-    let filter2 = UIAlertAction(title: "Filter2", style: UIAlertActionStyle.Default) { (alert) -> Void in
-      println("Filter 2 selected")
+    let filter2 = UIAlertAction(title: "Vintage", style: UIAlertActionStyle.Default) { (alert) -> Void in
+      println("Photo Effect Transfer selected")
+      let image = CIImage(image: self.imageView.image!)
+      let photoEffectTransfer = CIFilter(name: "CIPhotoEffectTransfer")
+      photoEffectTransfer.setValue(image, forKey: kCIInputImageKey)
+      
+      //cpu context, not as fast as GPU context
+      let context = CIContext(options: nil)
+      
+      //gpu context
+      let options = [kCIContextWorkingColorSpace : NSNull()]
+      let eaglContext = EAGLContext(API: EAGLRenderingAPI.OpenGLES2)
+      let gpuContext = CIContext(EAGLContext: eaglContext, options: options)
+      
+      
+      let outputImage = photoEffectTransfer.outputImage
+      let extent = outputImage.extent()
+      let cgImage = gpuContext.createCGImage(outputImage, fromRect: extent)
+      let finalImage = UIImage(CGImage: cgImage)
+      self.imageView.image = finalImage
+      
+      
     }
     
     alert.addAction(cancelAction)
