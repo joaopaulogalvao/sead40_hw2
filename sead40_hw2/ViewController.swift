@@ -11,7 +11,7 @@ import Parse
 import QuartzCore
 
 class ViewController: UIViewController {
-
+  
   @IBOutlet weak var imageView: UIImageView!
   
   @IBOutlet weak var btnAlert: UIButton!
@@ -101,23 +101,49 @@ class ViewController: UIViewController {
         self.imageView.image = finalImage
         
       }
-      
+    }
+    
+    let filter3 = UIAlertAction(title: "Distortion", style: UIAlertActionStyle.Default) { (alert) -> Void in
+      // Option Binding to prevent the user from filtering when there is no image
+      if let image = self.imageView.image {
+        
+        let image = CIImage(image: self.imageView.image!)
+        let distortion = CIFilter(name: "CIBumpDistortion", withInputParameters: ["inputRadius": 350])
+        distortion.setValue(image, forKey: kCIInputImageKey)
+        
+        //cpu context, not as fast as GPU context
+        let context = CIContext(options: nil)
+        
+        //gpu context
+        let options = [kCIContextWorkingColorSpace : NSNull()]
+        let eaglContext = EAGLContext(API: EAGLRenderingAPI.OpenGLES2)
+        let gpuContext = CIContext(EAGLContext: eaglContext, options: options)
+        
+        
+        let outputImage = distortion.outputImage
+        let extent = outputImage.extent()
+        let cgImage = gpuContext.createCGImage(outputImage, fromRect: extent)
+        let finalImage = UIImage(CGImage: cgImage)
+        self.imageView.image = finalImage
+        
+      }
     }
     
     alert.addAction(cancelAction)
     alert.addAction(camera)
     alert.addAction(filter1)
     alert.addAction(filter2)
+    alert.addAction(filter3)
     
     self.picker.delegate = self
     self.picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
   }
-
+  
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
   }
-
+  
   @IBAction func showAction(sender: AnyObject) {
     
     alert.modalPresentationStyle = UIModalPresentationStyle.PageSheet
@@ -130,7 +156,7 @@ class ViewController: UIViewController {
     self.presentViewController(alert, animated: true, completion: nil)
     
   }
-
+  
 }
 
 extension ViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
