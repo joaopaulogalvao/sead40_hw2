@@ -61,7 +61,9 @@
                             <constraint firstAttribute="trailingMargin" secondItem="XFp-VU-tA8" secondAttribute="trailing" constant="134" id="Rbb-bg-vLi"/>
                             <constraint firstAttribute="centerX" secondItem="2qj-uH-3Qc" secondAttribute="centerX" id="Rpc-DG-Jcc"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="XFp-VU-tA8" secondAttribute="bottom" constant="233" id="cSr-QP-Mg0"/>
-                            <constraint firstItem="2qj-uH-3Qc" firstAttribute="top" secondItem="9Ms-a8-qo6" secondAttribute="bottom" constant="8" id="daK-oR-IiJ"/>
+                            <constraint firstItem="2qj-uH-3Qc" firstAttribute="top" secondItem="9Ms-a8-qo6" secondAttribute="bottom" constant="8" id="daK-oR-IiJ">
+                                <variation key="heightClass=regular-widthClass=compact" constant="-150"/>
+                            </constraint>
                             <constraint firstItem="XFp-VU-tA8" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" multiplier="0.8" id="fHL-xP-hc6"/>
                             <constraint firstItem="XFp-VU-tA8" firstAttribute="height" secondItem="kh9-bI-dsS" secondAttribute="height" multiplier="0.8" id="gaG-kk-Bh2"/>
                             <constraint firstItem="9Ms-a8-qo6" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="jNk-54-rce"/>
