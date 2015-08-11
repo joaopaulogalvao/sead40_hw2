@@ -46,48 +46,61 @@ class ViewController: UIViewController {
     
     let filter1 = UIAlertAction(title: "Black & White", style: UIAlertActionStyle.Default) { (alert) -> Void in
       println("Mono/Black & White selected")
-      let image = CIImage(image: self.imageView.image!)
-      let monoEffect = CIFilter(name: "CIPhotoEffectMono")
-      monoEffect.setValue(image, forKey: kCIInputImageKey)
-      
-      //cpu context, not as fast as GPU context
-      let context = CIContext(options: nil)
-      
-      //gpu context
-      let options = [kCIContextWorkingColorSpace : NSNull()]
-      let eaglContext = EAGLContext(API: EAGLRenderingAPI.OpenGLES2)
-      let gpuContext = CIContext(EAGLContext: eaglContext, options: options)
       
       
-      let outputImage = monoEffect.outputImage
-      let extent = outputImage.extent()
-      let cgImage = gpuContext.createCGImage(outputImage, fromRect: extent)
-      let finalImage = UIImage(CGImage: cgImage)
-      self.imageView.image = finalImage
+      // Optional binding to prevent the user from filtering when there is no image
+      if let image = self.imageView.image {
+        
+        let image = CIImage(image: self.imageView.image!)
+        let monoEffect = CIFilter(name: "CIPhotoEffectMono")
+        monoEffect.setValue(image, forKey: kCIInputImageKey)
+        
+        //cpu context, not as fast as GPU context
+        let context = CIContext(options: nil)
+        
+        //gpu context
+        let options = [kCIContextWorkingColorSpace : NSNull()]
+        let eaglContext = EAGLContext(API: EAGLRenderingAPI.OpenGLES2)
+        let gpuContext = CIContext(EAGLContext: eaglContext, options: options)
+        
+        
+        let outputImage = monoEffect.outputImage
+        let extent = outputImage.extent()
+        let cgImage = gpuContext.createCGImage(outputImage, fromRect: extent)
+        let finalImage = UIImage(CGImage: cgImage)
+        self.imageView.image = finalImage
+        
+      }
+      
       
     }
     
     let filter2 = UIAlertAction(title: "Vintage", style: UIAlertActionStyle.Default) { (alert) -> Void in
       println("Photo Effect Transfer selected")
-      let image = CIImage(image: self.imageView.image!)
-      let photoEffectTransfer = CIFilter(name: "CIPhotoEffectTransfer")
-      photoEffectTransfer.setValue(image, forKey: kCIInputImageKey)
       
-      //cpu context, not as fast as GPU context
-      let context = CIContext(options: nil)
-      
-      //gpu context
-      let options = [kCIContextWorkingColorSpace : NSNull()]
-      let eaglContext = EAGLContext(API: EAGLRenderingAPI.OpenGLES2)
-      let gpuContext = CIContext(EAGLContext: eaglContext, options: options)
-      
-      
-      let outputImage = photoEffectTransfer.outputImage
-      let extent = outputImage.extent()
-      let cgImage = gpuContext.createCGImage(outputImage, fromRect: extent)
-      let finalImage = UIImage(CGImage: cgImage)
-      self.imageView.image = finalImage
-      
+      // Option Binding to prevent the user from filtering when there is no image
+      if let image = self.imageView.image {
+        
+        let image = CIImage(image: self.imageView.image!)
+        let photoEffectTransfer = CIFilter(name: "CIPhotoEffectTransfer")
+        photoEffectTransfer.setValue(image, forKey: kCIInputImageKey)
+        
+        //cpu context, not as fast as GPU context
+        let context = CIContext(options: nil)
+        
+        //gpu context
+        let options = [kCIContextWorkingColorSpace : NSNull()]
+        let eaglContext = EAGLContext(API: EAGLRenderingAPI.OpenGLES2)
+        let gpuContext = CIContext(EAGLContext: eaglContext, options: options)
+        
+        
+        let outputImage = photoEffectTransfer.outputImage
+        let extent = outputImage.extent()
+        let cgImage = gpuContext.createCGImage(outputImage, fromRect: extent)
+        let finalImage = UIImage(CGImage: cgImage)
+        self.imageView.image = finalImage
+        
+      }
       
     }
     
