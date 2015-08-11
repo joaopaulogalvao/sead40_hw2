@@ -17,7 +17,7 @@ DerivedData
 *.ipa
 *.xcuserstate
 *.DS_Store
-/.Keys.swift
+sead40_hw2/Keys.swift
 
 # CocoaPods
 #
