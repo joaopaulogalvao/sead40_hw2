@@ -100,8 +100,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="ocK-Re-wvI"/>
                     <connections>
+                        <outlet property="bottomCollectionViewConstraint" destination="OLn-Sl-3Ga" id="By8-7U-qfK"/>
+                        <outlet property="bottomImageViewConstraint" destination="fzu-bj-lHR" id="5fd-mK-46O"/>
                         <outlet property="btnAlert" destination="2qj-uH-3Qc" id="vSU-f3-Jpb"/>
                         <outlet property="imageView" destination="XFp-VU-tA8" id="cpV-9U-Oeu"/>
+                        <outlet property="leadingImageViewConstraint" destination="tQ8-E5-Rpy" id="8Ql-rW-7hB"/>
+                        <outlet property="topImageViewConstraint" destination="Ghd-sP-qgD" id="ByN-0z-i0g"/>
+                        <outlet property="trailingImageViewConstraint" destination="e9N-Jh-wUy" id="Zhd-eb-X6f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

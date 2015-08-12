@@ -15,6 +15,11 @@ class ViewController: UIViewController {
   @IBOutlet weak var imageView: UIImageView!
   
   @IBOutlet weak var btnAlert: UIButton!
+  @IBOutlet weak var topImageViewConstraint: NSLayoutConstraint!
+  @IBOutlet weak var trailingImageViewConstraint: NSLayoutConstraint!
+  @IBOutlet weak var leadingImageViewConstraint: NSLayoutConstraint!
+  @IBOutlet weak var bottomCollectionViewConstraint: NSLayoutConstraint!
+  @IBOutlet weak var bottomImageViewConstraint: NSLayoutConstraint!
   
   let picker : UIImagePickerController = UIImagePickerController()
   
@@ -211,15 +216,20 @@ class ViewController: UIViewController {
     
   }
   
-  func photoOptions(){
+  func enterFilterMode () {
+    leadingImageViewConstraint.constant = 40
+    trailingImageViewConstraint.constant = -40
+    topImageViewConstraint.constant = 40
+    bottomImageViewConstraint.constant = 70
+    bottomCollectionViewConstraint.constant = 8
     
-    let camera = UIAlertAction(title: "Camera", style: UIAlertActionStyle.Default, handler: { (alert) -> Void in
-      println("Camera chosen")
+    UIView.animateWithDuration(0.3, animations: { () -> Void in
+      self.view.layoutIfNeeded()
     })
-
-    alert.addAction(camera)
+    
+    let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: "closeFilterMode")
+    navigationItem.rightBarButtonItem = doneButton
   }
-  
   
 }
 
