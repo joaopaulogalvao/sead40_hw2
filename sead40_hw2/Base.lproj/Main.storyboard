@@ -125,7 +125,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" id="wP2-BB-QTz"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="homeTabBar" id="wP2-BB-QTz"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hXX-nj-HiD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -135,7 +135,7 @@
         <scene sceneID="Uwg-Um-XVt">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7Ub-eX-DJL" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Photo" id="nF7-E2-Ucx"/>
+                    <tabBarItem key="tabBarItem" title="Photo" image="cameraTabBar" id="nF7-E2-Ucx"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="UzH-8G-nn9">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -170,4 +170,8 @@
             <point key="canvasLocation" x="114" y="-187"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="cameraTabBar" width="36" height="36"/>
+        <image name="homeTabBar" width="36" height="36"/>
+    </resources>
 </document>
