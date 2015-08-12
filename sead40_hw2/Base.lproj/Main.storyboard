@@ -177,6 +177,9 @@
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="imgViewPostPhoto" destination="oLq-rw-nSU" id="CgL-0p-LaN"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -212,6 +215,9 @@
                         </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" image="homeTabBar" id="wP2-BB-QTz"/>
+                    <connections>
+                        <outlet property="tableViewTimeLine" destination="mb5-YK-ewM" id="8jV-tw-eD2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hXX-nj-HiD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

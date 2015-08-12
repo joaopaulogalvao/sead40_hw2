@@ -10,5 +10,6 @@ import UIKit
 
 class TimeLineCell: UITableViewCell {
 
+  @IBOutlet weak var imgViewPostPhoto: UIImageView!
     
 }
