@@ -19,8 +19,8 @@ class ViewController: UIViewController {
   let picker : UIImagePickerController = UIImagePickerController()
   
   let alert = UIAlertController(title: "Button Clicked", message: "Yes the button was clicked", preferredStyle: UIAlertControllerStyle.ActionSheet)
+  let cameraPhotoAlert = UIAlertController(title: "Camera/Photo", message: "Button clicked", preferredStyle: UIAlertControllerStyle.ActionSheet)
   
-
   
   
   override func viewDidLoad() {
@@ -38,13 +38,42 @@ class ViewController: UIViewController {
       println("Alert cancelled")
     }
     
+    let camera = UIAlertAction(title: "Camera", style: UIAlertActionStyle.Default, handler: { (alert) -> Void in
+      
+      if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
+        
+        self.picker.sourceType = UIImagePickerControllerSourceType.Camera
+        self.presentViewController(self.picker, animated: true, completion: { () -> Void in
+          //Enter completion here
+        })
+      } else {
+        
+        let alertNoCamera = UIAlertView(title: "Alert", message: "No camera available!", delegate: self, cancelButtonTitle: "Ok")
+        alertNoCamera.show()
+        self.picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        self.presentViewController(self.picker, animated: true, completion: nil)
+      }
+      
+    })
+    
+    let photoLibrary = UIAlertAction(title: "Photo Library", style: UIAlertActionStyle.Default, handler: { (alert) -> Void in
+      self.picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+      self.presentViewController(self.picker, animated: true, completion: nil)
+    })
+    
+    self.cameraPhotoAlert.addAction(camera)
+    self.cameraPhotoAlert.addAction(photoLibrary)
+    self.cameraPhotoAlert.addAction(cancelAction)
+    
     let chooseImage = UIAlertAction(title: "Choose Image", style: UIAlertActionStyle.Default) { (alert) -> Void in
       
-        let cameraPhotoLibAction = UIAlertController(title: "Camera", message: "", preferredStyle: UIAlertControllerStyle.ActionSheet)
-        
-      
+      self.presentViewController(self.cameraPhotoAlert, animated: true, completion: nil)
+  
       println("Choose image selected")
+      
     }
+    
+
     
     let filter1 = UIAlertAction(title: "Black & White", style: UIAlertActionStyle.Default) { (alert) -> Void in
       println("Mono/Black & White selected")
@@ -158,7 +187,7 @@ class ViewController: UIViewController {
     
   
     self.picker.delegate = self
-    self.picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+    //self.picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
   }
   
   override func didReceiveMemoryWarning() {
@@ -178,6 +207,7 @@ class ViewController: UIViewController {
       popover.sourceRect = btnAlert.frame
     }
     self.presentViewController(alert, animated: true, completion: nil)
+    
     
   }
   
