@@ -123,7 +123,50 @@
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Inu-vo-0HV">
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="mb5-YK-ewM">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="X5Y-sG-vBm">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="X5Y-sG-vBm" id="1zF-NJ-qaN">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="amp-7G-RIk" firstAttribute="top" secondItem="mb5-YK-ewM" secondAttribute="bottom" id="1Jq-Sa-68B"/>
+                            <constraint firstItem="mb5-YK-ewM" firstAttribute="top" secondItem="Inu-vo-0HV" secondAttribute="topMargin" id="4Om-sY-gLf"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="mb5-YK-ewM" secondAttribute="trailing" constant="-16" id="8SW-Dl-CoL"/>
+                            <constraint firstItem="mb5-YK-ewM" firstAttribute="leading" secondItem="Inu-vo-0HV" secondAttribute="leadingMargin" constant="-16" id="FRl-4V-qZa"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="mb5-YK-ewM"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="4Om-sY-gLf"/>
+                                <exclude reference="8SW-Dl-CoL"/>
+                                <exclude reference="FRl-4V-qZa"/>
+                                <exclude reference="1Jq-Sa-68B"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="mb5-YK-ewM"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="4Om-sY-gLf"/>
+                                <include reference="8SW-Dl-CoL"/>
+                                <include reference="FRl-4V-qZa"/>
+                                <include reference="1Jq-Sa-68B"/>
+                            </mask>
+                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" image="homeTabBar" id="wP2-BB-QTz"/>
                 </viewController>
