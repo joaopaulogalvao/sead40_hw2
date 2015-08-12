@@ -40,7 +40,8 @@ class ViewController: UIViewController {
     
     let chooseImage = UIAlertAction(title: "Choose Image", style: UIAlertActionStyle.Default) { (alert) -> Void in
       
-      self.targetForAction(self.photoOptions(), withSender: UIActionSheetStyle.Default)
+        let cameraPhotoLibAction = UIAlertController(title: "Camera", message: "", preferredStyle: UIAlertControllerStyle.ActionSheet)
+        
       
       println("Choose image selected")
     }

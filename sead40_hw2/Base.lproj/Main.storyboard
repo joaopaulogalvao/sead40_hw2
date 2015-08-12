@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="7Ub-eX-DJL">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -18,17 +18,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XFp-VU-tA8">
-                                <rect key="frame" x="60" y="7" width="480" height="480"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2qj-uH-3Qc">
                                 <rect key="frame" x="277" y="550" width="46" height="30"/>
                                 <state key="normal" title="Button">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <variation key="heightClass=regular-widthClass=regular">
-                                    <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                </variation>
                                 <connections>
                                     <action selector="showAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Okr-yG-AfS"/>
                                 </connections>
@@ -56,32 +50,55 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XFp-VU-tA8">
+                                <rect key="frame" x="16" y="72" width="568" height="364"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="XFp-VU-tA8" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="-13" id="Ghd-sP-qgD"/>
+                            <constraint firstItem="XFp-VU-tA8" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" id="Ghd-sP-qgD"/>
                             <constraint firstAttribute="trailingMargin" secondItem="9Ms-a8-qo6" secondAttribute="trailing" constant="-16" id="HCB-ZI-hoI"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="9Ms-a8-qo6" secondAttribute="bottom" constant="58" id="OLn-Sl-3Ga">
+                                <variation key="widthClass=compact" constant="-100"/>
+                            </constraint>
                             <constraint firstAttribute="trailingMargin" secondItem="XFp-VU-tA8" secondAttribute="trailing" constant="134" id="Rbb-bg-vLi"/>
                             <constraint firstAttribute="centerX" secondItem="2qj-uH-3Qc" secondAttribute="centerX" id="Rpc-DG-Jcc"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="XFp-VU-tA8" secondAttribute="bottom" constant="233" id="cSr-QP-Mg0"/>
                             <constraint firstItem="2qj-uH-3Qc" firstAttribute="top" secondItem="9Ms-a8-qo6" secondAttribute="bottom" constant="8" id="daK-oR-IiJ">
                                 <variation key="heightClass=regular-widthClass=compact" constant="-150"/>
                             </constraint>
+                            <constraint firstItem="XFp-VU-tA8" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="e9N-Jh-wUy"/>
                             <constraint firstItem="XFp-VU-tA8" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" multiplier="0.8" id="fHL-xP-hc6"/>
+                            <constraint firstItem="2qj-uH-3Qc" firstAttribute="top" secondItem="XFp-VU-tA8" secondAttribute="bottom" constant="8" id="fzu-bj-lHR"/>
                             <constraint firstItem="XFp-VU-tA8" firstAttribute="height" secondItem="kh9-bI-dsS" secondAttribute="height" multiplier="0.8" id="gaG-kk-Bh2"/>
                             <constraint firstItem="9Ms-a8-qo6" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="jNk-54-rce"/>
+                            <constraint firstItem="9Ms-a8-qo6" firstAttribute="top" secondItem="XFp-VU-tA8" secondAttribute="bottom" constant="6" id="m8b-mP-0MQ"/>
                             <constraint firstItem="XFp-VU-tA8" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="134" id="nCi-UT-XQX"/>
                             <constraint firstAttribute="centerX" secondItem="XFp-VU-tA8" secondAttribute="centerX" id="tAc-ox-svo"/>
+                            <constraint firstItem="XFp-VU-tA8" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="tQ8-E5-Rpy"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="2qj-uH-3Qc" secondAttribute="bottom" constant="20" id="uNe-jh-cEj"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="Rbb-bg-vLi"/>
+                                <exclude reference="fHL-xP-hc6"/>
+                                <exclude reference="gaG-kk-Bh2"/>
                                 <exclude reference="nCi-UT-XQX"/>
+                                <exclude reference="fzu-bj-lHR"/>
+                                <exclude reference="OLn-Sl-3Ga"/>
                                 <exclude reference="cSr-QP-Mg0"/>
                             </mask>
                         </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="constraints">
+                                <exclude reference="daK-oR-IiJ"/>
+                                <include reference="fzu-bj-lHR"/>
+                                <include reference="OLn-Sl-3Ga"/>
+                                <exclude reference="m8b-mP-0MQ"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <navigationItem key="navigationItem" id="ocK-Re-wvI"/>
                     <connections>
                         <outlet property="btnAlert" destination="2qj-uH-3Qc" id="vSU-f3-Jpb"/>
                         <outlet property="imageView" destination="XFp-VU-tA8" id="cpV-9U-Oeu"/>
@@ -89,6 +106,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1215" y="-369"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Uwg-Um-XVt">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7Ub-eX-DJL" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UzH-8G-nn9">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="8sM-EK-Ks5"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cne-lO-6lp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="472" y="-369"/>
         </scene>
     </scenes>
 </document>
