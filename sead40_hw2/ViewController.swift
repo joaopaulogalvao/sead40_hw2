@@ -165,6 +165,15 @@ class ViewController: UIViewController {
       }
     }
     
+    if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
+      
+      let filterAction = UIAlertAction(title: "Filter", style: UIAlertActionStyle.Default) { (alert) -> Void in
+        self.enterFilterMode()
+      }
+      
+      alert.addAction(filterAction)
+    }
+    
     let uploadAction = UIAlertAction(title: "Upload", style: UIAlertActionStyle.Default) { (alert) -> Void in
       let post = PFObject(className: "Post")
       post["text"] = "bla bla bla"
@@ -229,6 +238,23 @@ class ViewController: UIViewController {
     
     let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: "closeFilterMode")
     navigationItem.rightBarButtonItem = doneButton
+  }
+  
+  func closeFilterMode (){
+    
+    println("Close Filter pressed")
+    
+    leadingImageViewConstraint.constant = -40
+    trailingImageViewConstraint.constant = 40
+    topImageViewConstraint.constant = -40
+    bottomImageViewConstraint.constant = 70
+    bottomCollectionViewConstraint.constant = -100
+    
+    UIView.animateWithDuration(0.3, animations: { () -> Void in
+      self.view.layoutIfNeeded()
+    })
+    
+    self.navigationItem.rightBarButtonItem = nil
   }
   
 }
