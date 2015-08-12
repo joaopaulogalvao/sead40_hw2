@@ -14,10 +14,19 @@ class ViewController: UIViewController {
   
   @IBOutlet weak var imageView: UIImageView!
   
-  //MARK: Constraint Buffer Constants
+  //MARK: Constraint Enter Filter Buffer Constants
   let kleadingImageViewConstraint : CGFloat = 40
   let KtrailingImageViewConstraintBuffer : CGFloat = -40
-  // Finish other constants...
+  let ktopImageViewConstraint : CGFloat = 40
+  let kbottomImageViewConstraint : CGFloat = 70
+  let kbottomCollectionViewConstraint :CGFloat = 8
+  
+  //MARK: Constraint Close Filter Buffer Constants
+  let kcloseFilterLeadingImageViewConstraint : CGFloat = -40
+  let kcloseFilterTrailingImageViewConstraint : CGFloat = 40
+  let kcloseFilterTopImageViewConstraint : CGFloat = -40
+  let kcloseFilterBottomImageViewConstraint : CGFloat = 70
+  let kcloseFilterBottomCollectionViewConstraint : CGFloat = -100
   
   
   //MARK: Outlets
@@ -220,11 +229,11 @@ class ViewController: UIViewController {
   }
   
   func enterFilterMode () {
-    leadingImageViewConstraint.constant = 40
-    trailingImageViewConstraint.constant = -40
-    topImageViewConstraint.constant = 40
-    bottomImageViewConstraint.constant = 70
-    bottomCollectionViewConstraint.constant = 8
+    leadingImageViewConstraint.constant = kleadingImageViewConstraint
+    trailingImageViewConstraint.constant = KtrailingImageViewConstraintBuffer
+    topImageViewConstraint.constant = ktopImageViewConstraint
+    bottomImageViewConstraint.constant = kbottomImageViewConstraint
+    bottomCollectionViewConstraint.constant = kbottomCollectionViewConstraint
     
     UIView.animateWithDuration(0.3, animations: { () -> Void in
       self.view.layoutIfNeeded()
@@ -238,11 +247,11 @@ class ViewController: UIViewController {
     
     println("Close Filter pressed")
     
-    leadingImageViewConstraint.constant = -40
-    trailingImageViewConstraint.constant = 40
-    topImageViewConstraint.constant = -40
-    bottomImageViewConstraint.constant = 70
-    bottomCollectionViewConstraint.constant = -100
+    leadingImageViewConstraint.constant = kcloseFilterLeadingImageViewConstraint
+    trailingImageViewConstraint.constant = kcloseFilterTrailingImageViewConstraint
+    topImageViewConstraint.constant = kcloseFilterTopImageViewConstraint
+    bottomImageViewConstraint.constant = kcloseFilterBottomImageViewConstraint
+    bottomCollectionViewConstraint.constant = kcloseFilterBottomCollectionViewConstraint
     
     UIView.animateWithDuration(0.3, animations: { () -> Void in
       self.view.layoutIfNeeded()
