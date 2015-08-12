@@ -10,10 +10,13 @@ import UIKit
 import Parse
 
 class TimeLineViewController: UIViewController, UITableViewDataSource {
+  
 
   @IBOutlet weak var tableViewTimeLine: UITableView!
   
-  let postsArray = []
+  var postsArray = []
+  
+  lazy var postImageQueue = NSOperationQueue()
   
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
@@ -30,6 +33,8 @@ class TimeLineViewController: UIViewController, UITableViewDataSource {
         println(error.localizedDescription)
       } else if let posts = results as? [PFObject] {
         println(posts.count)
+        self.postsArray = posts
+        self.tableViewTimeLine.reloadData()
       }
     }
     
@@ -56,23 +61,32 @@ class TimeLineViewController: UIViewController, UITableViewDataSource {
 extension TimeLineViewController: UITableViewDataSource {
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    println("number of rows in table view: \(self.postsArray.count)")
     return self.postsArray.count
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     
-    let timeLineCell = tableView.dequeueReusableCellWithIdentifier("DetailCell", forIndexPath: indexPath) as! TimeLineCell
+    let timeLineCell = tableView.dequeueReusableCellWithIdentifier("TimeLineCell", forIndexPath: indexPath) as! TimeLineCell
     
-    var postsFromUser = self.postsArray[indexPath.row]
+    var postForUser: AnyObject = self.postsArray[indexPath.row]
     
-    if let postImage = self.postImage {
-      
-      timeLineCell.imgViewPostPhoto.setBackgroundImage(postImage, forState: UIControlState.Normal)
-      
-      
-    } else {
-      
+    if let imageFile = postForUser["image"] as? PFFile {
+      imageFile.getDataInBackgroundWithBlock({ (data, error) -> Void in
+        if let error = error {
+          println(error.localizedDescription)
+        } else if let data = data,
+          image = UIImage(data: data){
+            NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+              let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
+              imageView.image = image
+              timeLineCell.imgViewPostPhoto.image = image
+            })
+        }
+      })
     }
+    
+    
     
     return timeLineCell
 

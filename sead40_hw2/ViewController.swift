@@ -14,6 +14,13 @@ class ViewController: UIViewController {
   
   @IBOutlet weak var imageView: UIImageView!
   
+  //MARK: Constraint Buffer Constants
+  let kleadingImageViewConstraint : CGFloat = 40
+  let KtrailingImageViewConstraintBuffer : CGFloat = -40
+  // Finish other constants...
+  
+  
+  //MARK: Outlets
   @IBOutlet weak var btnAlert: UIButton!
   @IBOutlet weak var topImageViewConstraint: NSLayoutConstraint!
   @IBOutlet weak var trailingImageViewConstraint: NSLayoutConstraint!
