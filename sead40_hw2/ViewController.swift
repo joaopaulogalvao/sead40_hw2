@@ -175,21 +175,8 @@ class ViewController: UIViewController {
     }
     
     let uploadAction = UIAlertAction(title: "Upload", style: UIAlertActionStyle.Default) { (alert) -> Void in
-      let post = PFObject(className: "Post")
-      post["text"] = "bla bla bla"
       
-      if let image = self.imageView.image, data = UIImageJPEGRepresentation(image, 1.0)
-      {
-        
-        let file = PFFile(name: "post.jpeg", data: data)
-        post["image"] = file
-        
-      }
-      
-      post.saveInBackgroundWithBlock({ (succeeded, error) -> Void in
-        
-      })
-      
+      self.uploadToParse()
     }
     
     alert.addAction(cancelAction)
@@ -255,6 +242,25 @@ class ViewController: UIViewController {
     })
     
     self.navigationItem.rightBarButtonItem = nil
+  }
+  
+  func uploadToParse () {
+    
+    let post = PFObject(className: "Post")
+    post["text"] = "photo1"
+    
+    if let image = self.imageView.image, data = UIImageJPEGRepresentation(image, 1.0)
+    {
+      
+      let file = PFFile(name: "post.jpeg", data: data)
+      post["image"] = file
+      
+    }
+    
+    post.saveInBackgroundWithBlock({ (succeeded, error) -> Void in
+      
+    })
+    
   }
   
 }
