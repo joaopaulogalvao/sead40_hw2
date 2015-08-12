@@ -116,7 +116,7 @@
         <!--Home-->
         <scene sceneID="ggs-bS-Pt3">
             <objects>
-                <viewController id="8XZ-0o-7gt" sceneMemberID="viewController">
+                <viewController id="8XZ-0o-7gt" customClass="TimeLineViewController" customModule="sead40_hw2" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vE1-fD-zM1"/>
                         <viewControllerLayoutGuide type="bottom" id="amp-7G-RIk"/>
@@ -124,15 +124,58 @@
                     <view key="view" contentMode="scaleToFill" id="Inu-vo-0HV">
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="mb5-YK-ewM">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="mb5-YK-ewM">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="X5Y-sG-vBm">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TimeLineCell" id="X5Y-sG-vBm" customClass="TimeLineCell" customModule="sead40_hw2" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="X5Y-sG-vBm" id="1zF-NJ-qaN">
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oLq-rw-nSU">
+                                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="50" id="Ph2-Bj-DM3"/>
+                                                    </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="Ph2-Bj-DM3"/>
+                                                        </mask>
+                                                    </variation>
+                                                    <variation key="widthClass=compact">
+                                                        <mask key="constraints">
+                                                            <include reference="Ph2-Bj-DM3"/>
+                                                        </mask>
+                                                    </variation>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="oLq-rw-nSU" secondAttribute="bottom" constant="1" id="7ED-bz-C3X"/>
+                                                <constraint firstItem="oLq-rw-nSU" firstAttribute="leading" secondItem="1zF-NJ-qaN" secondAttribute="leadingMargin" id="88L-kl-3Dd"/>
+                                                <constraint firstItem="oLq-rw-nSU" firstAttribute="top" secondItem="1zF-NJ-qaN" secondAttribute="topMargin" constant="2" id="9mO-Lt-qvu"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="subviews">
+                                                    <exclude reference="oLq-rw-nSU"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <exclude reference="7ED-bz-C3X"/>
+                                                    <exclude reference="88L-kl-3Dd"/>
+                                                    <exclude reference="9mO-Lt-qvu"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="widthClass=compact">
+                                                <mask key="subviews">
+                                                    <include reference="oLq-rw-nSU"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <include reference="7ED-bz-C3X"/>
+                                                    <include reference="88L-kl-3Dd"/>
+                                                    <include reference="9mO-Lt-qvu"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
