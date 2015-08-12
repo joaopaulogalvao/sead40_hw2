@@ -20,6 +20,8 @@ class ViewController: UIViewController {
   
   let alert = UIAlertController(title: "Button Clicked", message: "Yes the button was clicked", preferredStyle: UIAlertControllerStyle.ActionSheet)
   
+
+  
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -31,27 +33,16 @@ class ViewController: UIViewController {
       
     }
     
+  
     let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel) { (alert) -> Void in
       println("Alert cancelled")
     }
     
-    let camera = UIAlertAction(title: "Camera", style: UIAlertActionStyle.Default) { (alert) -> Void in
+    let chooseImage = UIAlertAction(title: "Choose Image", style: UIAlertActionStyle.Default) { (alert) -> Void in
       
-      if UIImagePickerController.isSourceTypeAvailable(
-        UIImagePickerControllerSourceType.Camera) {
-          self.picker.sourceType = UIImagePickerControllerSourceType.Camera
-          // Code here
-          self.presentViewController(self.picker, animated: true, completion: nil)
-      } else {
-        
-        
-        self.picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        self.presentViewController(self.picker, animated: true, completion: nil)
-        println("buy a decent iPhone!!!")
-      }
+      self.targetForAction(self.photoOptions(), withSender: UIActionSheetStyle.Default)
       
-      
-      println("Camera selected")
+      println("Choose image selected")
     }
     
     let filter1 = UIAlertAction(title: "Black & White", style: UIAlertActionStyle.Default) { (alert) -> Void in
@@ -158,12 +149,13 @@ class ViewController: UIViewController {
     }
     
     alert.addAction(cancelAction)
-    alert.addAction(camera)
+    alert.addAction(chooseImage)
     alert.addAction(filter1)
     alert.addAction(filter2)
     alert.addAction(filter3)
     alert.addAction(uploadAction)
     
+  
     self.picker.delegate = self
     self.picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
   }
@@ -172,6 +164,8 @@ class ViewController: UIViewController {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
   }
+  
+  // MARK: - My Actions
   
   @IBAction func showAction(sender: AnyObject) {
     
@@ -186,10 +180,22 @@ class ViewController: UIViewController {
     
   }
   
+  func photoOptions(){
+    
+    let camera = UIAlertAction(title: "Camera", style: UIAlertActionStyle.Default, handler: { (alert) -> Void in
+      println("Camera chosen")
+    })
+
+    alert.addAction(camera)
+  }
+  
+  
 }
 
-extension ViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension ViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate {
   
+  
+  // MARK: - UIImagePickerDelegate
   func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
     let image : UIImage = (info[UIImagePickerControllerOriginalImage] as? UIImage)!
     self.imageView.image = image
@@ -201,5 +207,37 @@ extension ViewController : UIImagePickerControllerDelegate, UINavigationControll
     println("Picker Cancelled")
   }
   
+  // MARK: - UIActionSheetDelegate
+  func actionSheet(actionSheet: UIActionSheet, didDismissWithButtonIndex buttonIndex: Int) {
+    switch buttonIndex{
+      
+    case 0:
+      println("selected camera")
+      self.presentViewController(self.picker, animated: true, completion: nil)
+      break
+    default:
+      println("selected")
+      break
+    }
+  }
+  
+  
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
