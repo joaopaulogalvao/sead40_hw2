@@ -12,9 +12,7 @@ import QuartzCore
 
 class ViewController: UIViewController {
   
-  @IBOutlet weak var imageView: UIImageView!
   
-  @IBOutlet weak var collectionViewFilters: UICollectionView!
   
   
   //MARK: Constraint Enter Filter Buffer Constants
@@ -35,6 +33,8 @@ class ViewController: UIViewController {
   let kThumbnailSize = CGSize(width: 100, height: 100)
   
   //MARK: Outlets
+  @IBOutlet weak var imageView: UIImageView!
+  @IBOutlet weak var collectionViewFilters: UICollectionView!
   @IBOutlet weak var btnAlert: UIButton!
   @IBOutlet weak var topImageViewConstraint: NSLayoutConstraint!
   @IBOutlet weak var trailingImageViewConstraint: NSLayoutConstraint!
@@ -58,11 +58,14 @@ class ViewController: UIViewController {
   let cameraPhotoAlert = UIAlertController(title: "Camera/Photo", message: "Button clicked", preferredStyle: UIAlertControllerStyle.ActionSheet)
   let filtersAlert = UIAlertController(title: "Filters", message: "Filters Clicked", preferredStyle: UIAlertControllerStyle.ActionSheet)
   
-  //
   
+  //Observer
   var displayImage : UIImage! {
     didSet {
       imageView.image = displayImage
+      thumbnail = ImageResizer.resizeImage(displayImage, size:kThumbnailSize)
+      collectionViewFilters.reloadData()
+      
     }
   }
   
@@ -301,7 +304,7 @@ extension ViewController : UIImagePickerControllerDelegate, UINavigationControll
   // MARK: - UIImagePickerDelegate
   func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
     let image : UIImage = (info[UIImagePickerControllerOriginalImage] as? UIImage)!
-    self.imageView.image = image
+    displayImage = image
     self.picker.dismissViewControllerAnimated(true, completion: nil)
   }
   
