@@ -14,6 +14,9 @@ class ViewController: UIViewController {
   
   @IBOutlet weak var imageView: UIImageView!
   
+  @IBOutlet weak var collectionViewFilters: UICollectionView!
+  
+  
   //MARK: Constraint Enter Filter Buffer Constants
   let kleadingImageViewConstraint : CGFloat = 40
   let KtrailingImageViewConstraintBuffer : CGFloat = -40
@@ -41,6 +44,7 @@ class ViewController: UIViewController {
   
   let alert = UIAlertController(title: "Button Clicked", message: "Yes the button was clicked", preferredStyle: UIAlertControllerStyle.ActionSheet)
   let cameraPhotoAlert = UIAlertController(title: "Camera/Photo", message: "Button clicked", preferredStyle: UIAlertControllerStyle.ActionSheet)
+  let filtersAlert = UIAlertController(title: "Filters", message: "Filters Clicked", preferredStyle: UIAlertControllerStyle.ActionSheet)
   
   
   
@@ -48,7 +52,7 @@ class ViewController: UIViewController {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
     
-    
+    collectionViewFilters.dataSource = self
     
     if UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Pad {
       
@@ -81,20 +85,6 @@ class ViewController: UIViewController {
       self.picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
       self.presentViewController(self.picker, animated: true, completion: nil)
     })
-    
-    self.cameraPhotoAlert.addAction(camera)
-    self.cameraPhotoAlert.addAction(photoLibrary)
-    self.cameraPhotoAlert.addAction(cancelAction)
-    
-    let chooseImage = UIAlertAction(title: "Choose Image", style: UIAlertActionStyle.Default) { (alert) -> Void in
-      
-      self.presentViewController(self.cameraPhotoAlert, animated: true, completion: nil)
-  
-      println("Choose image selected")
-      
-    }
-    
-
     
     let filter1 = UIAlertAction(title: "Black & White", style: UIAlertActionStyle.Default) { (alert) -> Void in
       println("Mono/Black & White selected")
@@ -181,6 +171,32 @@ class ViewController: UIViewController {
       }
     }
     
+    
+    self.cameraPhotoAlert.addAction(camera)
+    self.cameraPhotoAlert.addAction(photoLibrary)
+    self.cameraPhotoAlert.addAction(cancelAction)
+    
+    let chooseImage = UIAlertAction(title: "Choose Image", style: UIAlertActionStyle.Default) { (alert) -> Void in
+      
+      self.presentViewController(self.cameraPhotoAlert, animated: true, completion: nil)
+  
+      println("Choose image selected")
+      
+    }
+    
+    let chooseFilter = UIAlertAction(title: "Choose Filter", style: UIAlertActionStyle.Default) { (alert) -> Void in
+      self.presentViewController(self.filtersAlert, animated: true, completion: nil)
+      self.enterFilterMode()
+    }
+    
+    self.filtersAlert.addAction(filter1)
+    self.filtersAlert.addAction(filter2)
+    self.filtersAlert.addAction(filter3)
+    
+    
+    
+    
+    
     if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
       
       let filterAction = UIAlertAction(title: "Filter", style: UIAlertActionStyle.Default) { (alert) -> Void in
@@ -197,9 +213,7 @@ class ViewController: UIViewController {
     
     alert.addAction(cancelAction)
     alert.addAction(chooseImage)
-    alert.addAction(filter1)
-    alert.addAction(filter2)
-    alert.addAction(filter3)
+    alert.addAction(chooseFilter)
     alert.addAction(uploadAction)
     
   
@@ -280,7 +294,21 @@ class ViewController: UIViewController {
   }
   
 }
+  // MARK: - UICollectionViewDataSource
+extension ViewController : UICollectionViewDataSource {
+  func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return 3
+  }
+  
+  func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ThumbnailCell", forIndexPath: indexPath) as! UICollectionViewCell
+      cell.backgroundColor = UIColor.redColor()
+    
+    return cell
+  }
+}
 
+  // MARK: - UIImagePickerControllerDelegate
 extension ViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate {
   
   

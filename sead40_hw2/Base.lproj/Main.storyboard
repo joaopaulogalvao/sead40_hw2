@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hfc-TS-a6u">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -19,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2qj-uH-3Qc">
-                                <rect key="frame" x="277" y="550" width="46" height="30"/>
+                                <rect key="frame" x="277" y="501" width="46" height="30"/>
                                 <state key="normal" title="Button">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -28,7 +29,7 @@
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9Ms-a8-qo6">
-                                <rect key="frame" x="0.0" y="442" width="600" height="100"/>
+                                <rect key="frame" x="0.0" y="393" width="600" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="iZX-SB-aFL"/>
                                 </constraints>
@@ -39,7 +40,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="fhJ-h7-PbQ">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ThumbnailCell" id="fhJ-h7-PbQ">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -51,7 +52,7 @@
                                 </cells>
                             </collectionView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XFp-VU-tA8">
-                                <rect key="frame" x="16" y="72" width="568" height="364"/>
+                                <rect key="frame" x="16" y="72" width="568" height="315"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -103,6 +104,7 @@
                         <outlet property="bottomCollectionViewConstraint" destination="OLn-Sl-3Ga" id="By8-7U-qfK"/>
                         <outlet property="bottomImageViewConstraint" destination="fzu-bj-lHR" id="5fd-mK-46O"/>
                         <outlet property="btnAlert" destination="2qj-uH-3Qc" id="vSU-f3-Jpb"/>
+                        <outlet property="collectionViewFilters" destination="9Ms-a8-qo6" id="FUA-oc-ADm"/>
                         <outlet property="imageView" destination="XFp-VU-tA8" id="cpV-9U-Oeu"/>
                         <outlet property="leadingImageViewConstraint" destination="tQ8-E5-Rpy" id="8Ql-rW-7hB"/>
                         <outlet property="topImageViewConstraint" destination="Ghd-sP-qgD" id="ByN-0z-i0g"/>
@@ -122,6 +124,7 @@
                         <viewControllerLayoutGuide type="bottom" id="amp-7G-RIk"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Inu-vo-0HV">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="mb5-YK-ewM">
