@@ -80,7 +80,7 @@ class ViewController: UIViewController {
     // Set picker dataSource
     collectionViewFilters.dataSource = self
     
-    imageView.image = UIImage(named: "placeholder.jpeg")
+    displayImage = UIImage(named: "placeholder.jpeg")
     
     if UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Pad {
       
@@ -301,8 +301,13 @@ extension ViewController : UICollectionViewDataSource, UICollectionViewDelegate 
   func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
     
     
-    self.imageView.image = displayImage
+    let selectedFilter = self.filters[indexPath.row]
     
+    if let image = imageView.image {
+      
+      self.displayImage = selectedFilter.(image, context)
+    }
+ 
   }
 }
 
