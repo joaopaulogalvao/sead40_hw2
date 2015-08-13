@@ -47,12 +47,18 @@
                                             <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9uB-rx-nK1">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9uB-rx-nK1">
                                                     <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <constraints>
+                                            <constraint firstItem="9uB-rx-nK1" firstAttribute="top" secondItem="fhJ-h7-PbQ" secondAttribute="topMargin" constant="-8" id="AA6-qx-jLw"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="9uB-rx-nK1" secondAttribute="trailing" constant="-8" id="C54-zo-4YA"/>
+                                            <constraint firstItem="9uB-rx-nK1" firstAttribute="leading" secondItem="fhJ-h7-PbQ" secondAttribute="leadingMargin" constant="-8" id="flu-aH-scy"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="9uB-rx-nK1" secondAttribute="bottom" constant="-8" id="rVZ-0U-14z"/>
+                                        </constraints>
                                         <connections>
                                             <outlet property="imgViewCollectionCell" destination="9uB-rx-nK1" id="1Ae-Kn-ka8"/>
                                         </connections>

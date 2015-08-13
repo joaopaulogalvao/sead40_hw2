@@ -31,6 +31,8 @@ class ViewController: UIViewController {
   let kcloseFilterBottomImageViewConstraint : CGFloat = 70
   let kcloseFilterBottomCollectionViewConstraint : CGFloat = -100
   
+  //MARK: Thumbnail Size
+  let kThumbnailSize = CGSize(width: 100, height: 100)
   
   //MARK: Outlets
   @IBOutlet weak var btnAlert: UIButton!
@@ -56,7 +58,13 @@ class ViewController: UIViewController {
   let cameraPhotoAlert = UIAlertController(title: "Camera/Photo", message: "Button clicked", preferredStyle: UIAlertControllerStyle.ActionSheet)
   let filtersAlert = UIAlertController(title: "Filters", message: "Filters Clicked", preferredStyle: UIAlertControllerStyle.ActionSheet)
   
+  //
   
+  var displayImage : UIImage! {
+    didSet {
+      imageView.image = displayImage
+    }
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
