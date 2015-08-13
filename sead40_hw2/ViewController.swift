@@ -42,6 +42,7 @@ class ViewController: UIViewController {
   
   let picker : UIImagePickerController = UIImagePickerController()
   
+  //MARK: Alert Controllers
   let alert = UIAlertController(title: "Button Clicked", message: "Yes the button was clicked", preferredStyle: UIAlertControllerStyle.ActionSheet)
   let cameraPhotoAlert = UIAlertController(title: "Camera/Photo", message: "Button clicked", preferredStyle: UIAlertControllerStyle.ActionSheet)
   let filtersAlert = UIAlertController(title: "Filters", message: "Filters Clicked", preferredStyle: UIAlertControllerStyle.ActionSheet)
@@ -52,98 +53,105 @@ class ViewController: UIViewController {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
     
+    // Set picker delegate
+    self.picker.delegate = self
+    //self.picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+    
+    // Set picker dataSource
     collectionViewFilters.dataSource = self
     
     if UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Pad {
       
     }
     
-  
+    
     let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel) { (alert) -> Void in
       println("Alert cancelled")
     }
     
+    // Create Camera Alert Action
     let camera = UIAlertAction(title: "Camera", style: UIAlertActionStyle.Default, handler: { (alert) -> Void in
       
+      // Check if a camera is available
       if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
         
+        // Present the camera
         self.picker.sourceType = UIImagePickerControllerSourceType.Camera
         self.presentViewController(self.picker, animated: true, completion: { () -> Void in
           //Enter completion here
         })
       } else {
         
+        // Alert that there is not a camera available
         let alertNoCamera = UIAlertView(title: "Alert", message: "No camera available!", delegate: self, cancelButtonTitle: "Ok")
+        
+        // Show alert
         alertNoCamera.show()
+        
+        // Show Photo Library
         self.picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
         self.presentViewController(self.picker, animated: true, completion: nil)
       }
       
     })
     
+    // Create Photo Library Alert Action
     let photoLibrary = UIAlertAction(title: "Photo Library", style: UIAlertActionStyle.Default, handler: { (alert) -> Void in
       self.picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
       self.presentViewController(self.picker, animated: true, completion: nil)
     })
     
-    let filter1 = UIAlertAction(title: "Black & White", style: UIAlertActionStyle.Default) { (alert) -> Void in
-      println("Mono/Black & White selected")
+    //Show camera action
+    self.cameraPhotoAlert.addAction(camera)
+    
+    //Show photoLibrary action
+    self.cameraPhotoAlert.addAction(photoLibrary)
+    
+    //Show cancelAction
+    self.cameraPhotoAlert.addAction(cancelAction)
+    
+    // Create Choose Image Alert
+    let chooseImage = UIAlertAction(title: "Choose Image", style: UIAlertActionStyle.Default) { (alert) -> Void in
       
-      
-      // Optional binding to prevent the user from filtering when there is no image
-      if let image = self.imageView.image {
-        
-        let image = CIImage(image: self.imageView.image!)
-        let monoEffect = CIFilter(name: "CIPhotoEffectMono")
-        monoEffect.setValue(image, forKey: kCIInputImageKey)
-        
-        //cpu context, not as fast as GPU context
-        let context = CIContext(options: nil)
-        
-        //gpu context
-        let options = [kCIContextWorkingColorSpace : NSNull()]
-        let eaglContext = EAGLContext(API: EAGLRenderingAPI.OpenGLES2)
-        let gpuContext = CIContext(EAGLContext: eaglContext, options: options)
-        
-        
-        let outputImage = monoEffect.outputImage
-        let extent = outputImage.extent()
-        let cgImage = gpuContext.createCGImage(outputImage, fromRect: extent)
-        let finalImage = UIImage(CGImage: cgImage)
-        self.imageView.image = finalImage
-        
-      }
-      
+      self.presentViewController(self.cameraPhotoAlert, animated: true, completion: nil)
+  
+      println("Choose image selected")
       
     }
     
-    let filter2 = UIAlertAction(title: "Vintage", style: UIAlertActionStyle.Default) { (alert) -> Void in
-      println("Photo Effect Transfer selected")
+    // Show choose image alert
+    alert.addAction(chooseImage)
+    
+    // Check if it is an iPhone
+    if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
       
-      // Option Binding to prevent the user from filtering when there is no image
-      if let image = self.imageView.image {
-        
-        let image = CIImage(image: self.imageView.image!)
-        let photoEffectTransfer = CIFilter(name: "CIPhotoEffectTransfer")
-        photoEffectTransfer.setValue(image, forKey: kCIInputImageKey)
-        
-        //cpu context, not as fast as GPU context
-        let context = CIContext(options: nil)
-        
-        //gpu context
-        let options = [kCIContextWorkingColorSpace : NSNull()]
-        let eaglContext = EAGLContext(API: EAGLRenderingAPI.OpenGLES2)
-        let gpuContext = CIContext(EAGLContext: eaglContext, options: options)
-        
-        
-        let outputImage = photoEffectTransfer.outputImage
-        let extent = outputImage.extent()
-        let cgImage = gpuContext.createCGImage(outputImage, fromRect: extent)
-        let finalImage = UIImage(CGImage: cgImage)
-        self.imageView.image = finalImage
-        
+      let filterAction = UIAlertAction(title: "Choose Filter", style: UIAlertActionStyle.Default) { (alert) -> Void in
+        self.enterFilterMode()
       }
+      
+      // Show filter action
+      alert.addAction(filterAction)
     }
+    
+    //Create uploadAction
+    let uploadAction = UIAlertAction(title: "Upload", style: UIAlertActionStyle.Default) { (alert) -> Void in
+      
+      self.uploadToParse()
+    }
+    
+    // Show upload action
+    alert.addAction(uploadAction)
+    
+    // Show Cancel Action
+    alert.addAction(cancelAction)
+    
+    
+    /*
+    
+    ----------------------------------------------------------
+    Alert Action style
+    ----------------------------------------------------------
+    // Use alert if needed
     
     let filter3 = UIAlertAction(title: "Distortion", style: UIAlertActionStyle.Default) { (alert) -> Void in
       // Option Binding to prevent the user from filtering when there is no image
@@ -170,55 +178,8 @@ class ViewController: UIViewController {
         
       }
     }
+    */
     
-    
-    self.cameraPhotoAlert.addAction(camera)
-    self.cameraPhotoAlert.addAction(photoLibrary)
-    self.cameraPhotoAlert.addAction(cancelAction)
-    
-    let chooseImage = UIAlertAction(title: "Choose Image", style: UIAlertActionStyle.Default) { (alert) -> Void in
-      
-      self.presentViewController(self.cameraPhotoAlert, animated: true, completion: nil)
-  
-      println("Choose image selected")
-      
-    }
-    
-    let chooseFilter = UIAlertAction(title: "Choose Filter", style: UIAlertActionStyle.Default) { (alert) -> Void in
-      self.presentViewController(self.filtersAlert, animated: true, completion: nil)
-      self.enterFilterMode()
-    }
-    
-    self.filtersAlert.addAction(filter1)
-    self.filtersAlert.addAction(filter2)
-    self.filtersAlert.addAction(filter3)
-    
-    
-    
-    
-    
-    if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
-      
-      let filterAction = UIAlertAction(title: "Filter", style: UIAlertActionStyle.Default) { (alert) -> Void in
-        self.enterFilterMode()
-      }
-      
-      alert.addAction(filterAction)
-    }
-    
-    let uploadAction = UIAlertAction(title: "Upload", style: UIAlertActionStyle.Default) { (alert) -> Void in
-      
-      self.uploadToParse()
-    }
-    
-    alert.addAction(cancelAction)
-    alert.addAction(chooseImage)
-    alert.addAction(chooseFilter)
-    alert.addAction(uploadAction)
-    
-  
-    self.picker.delegate = self
-    //self.picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
   }
   
   override func didReceiveMemoryWarning() {
@@ -227,7 +188,6 @@ class ViewController: UIViewController {
   }
   
   // MARK: - My Actions
-  
   @IBAction func showAction(sender: AnyObject) {
     
     alert.modalPresentationStyle = UIModalPresentationStyle.PageSheet
