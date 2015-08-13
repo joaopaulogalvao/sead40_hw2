@@ -42,6 +42,15 @@ class ViewController: UIViewController {
   
   let picker : UIImagePickerController = UIImagePickerController()
   
+  // Array of filters - it will be used as a reference to cellForRowAtIndexPath, that's why you don't need to pass the parameters in here
+  var filters : [(UIImage, CIContext) -> (UIImage)!] = [FilterService.ciPhotoEffectMono,FilterService.ciBumDistortion, FilterService.ciPhotoEffectTransfer]
+  
+  //Context and Image
+  var thumbnail : UIImage?
+  let context = CIContext(options: nil)
+  
+  
+  
   //MARK: Alert Controllers
   let alert = UIAlertController(title: "Button Clicked", message: "Yes the button was clicked", preferredStyle: UIAlertControllerStyle.ActionSheet)
   let cameraPhotoAlert = UIAlertController(title: "Camera/Photo", message: "Button clicked", preferredStyle: UIAlertControllerStyle.ActionSheet)
@@ -257,12 +266,21 @@ class ViewController: UIViewController {
   // MARK: - UICollectionViewDataSource
 extension ViewController : UICollectionViewDataSource {
   func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return 3
+    return filters.count
   }
   
   func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ThumbnailCell", forIndexPath: indexPath) as! UICollectionViewCell
-      cell.backgroundColor = UIColor.redColor()
+    let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ThumbnailCell", forIndexPath: indexPath) as! CollectionViewCell
+    
+    //Filter thumbnail index
+    let filterThumbnail = filters[indexPath.row]
+    
+    //Check if there is a thumbnail when the view gets called
+    if let thumbnail = thumbnail {
+      let filteredImage = filterThumbnail(thumbnail, context)
+      cell.imgViewCollectionCell.image = filteredImage
+    }
+    
     
     return cell
   }

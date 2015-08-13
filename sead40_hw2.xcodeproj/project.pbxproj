@@ -13,6 +13,7 @@
 		6CB6E6961B7BC3AC008FA1A3 /* TimeLineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB6E6951B7BC3AC008FA1A3 /* TimeLineCell.swift */; };
 		6CB6E6981B7BEEDD008FA1A3 /* FilterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB6E6971B7BEEDD008FA1A3 /* FilterService.swift */; };
 		6CB6E69A1B7C2381008FA1A3 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB6E6991B7C2381008FA1A3 /* CollectionViewCell.swift */; };
+		6CB6E69C1B7CFD0B008FA1A3 /* ParseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB6E69B1B7CFD0B008FA1A3 /* ParseManager.swift */; };
 		6CF380611B7949D6005E05C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF380601B7949D6005E05C8 /* AppDelegate.swift */; };
 		6CF380631B7949D6005E05C8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF380621B7949D6005E05C8 /* ViewController.swift */; };
 		6CF380661B7949D6005E05C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CF380641B7949D6005E05C8 /* Main.storyboard */; };
@@ -51,6 +52,7 @@
 		6CB6E6951B7BC3AC008FA1A3 /* TimeLineCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeLineCell.swift; sourceTree = "<group>"; };
 		6CB6E6971B7BEEDD008FA1A3 /* FilterService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterService.swift; sourceTree = "<group>"; };
 		6CB6E6991B7C2381008FA1A3 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		6CB6E69B1B7CFD0B008FA1A3 /* ParseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseManager.swift; sourceTree = "<group>"; };
 		6CF3805B1B7949D6005E05C8 /* sead40_hw2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sead40_hw2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CF3805F1B7949D6005E05C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6CF380601B7949D6005E05C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 		6CF3809D1B796DBA005E05C8 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				6CB6E69B1B7CFD0B008FA1A3 /* ParseManager.swift */,
 				6CF380621B7949D6005E05C8 /* ViewController.swift */,
 				6CB6E6931B7BBF2A008FA1A3 /* TimeLineViewController.swift */,
 				6CB6E6971B7BEEDD008FA1A3 /* FilterService.swift */,
@@ -318,6 +321,7 @@
 				6CF380631B7949D6005E05C8 /* ViewController.swift in Sources */,
 				6CB6E6941B7BBF2A008FA1A3 /* TimeLineViewController.swift in Sources */,
 				6CB6E6901B7AB2F6008FA1A3 /* Keys.swift in Sources */,
+				6CB6E69C1B7CFD0B008FA1A3 /* ParseManager.swift in Sources */,
 				6CB6E69A1B7C2381008FA1A3 /* CollectionViewCell.swift in Sources */,
 				6CB6E6981B7BEEDD008FA1A3 /* FilterService.swift in Sources */,
 				6CB6E6961B7BC3AC008FA1A3 /* TimeLineCell.swift in Sources */,
