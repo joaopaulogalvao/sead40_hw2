@@ -79,6 +79,7 @@ class ViewController: UIViewController {
     
     // Set picker dataSource
     collectionViewFilters.dataSource = self
+    collectionViewFilters.delegate = self
     
     displayImage = UIImage(named: "placeholder.jpeg")
     
@@ -305,7 +306,7 @@ extension ViewController : UICollectionViewDataSource, UICollectionViewDelegate 
     
     if let image = imageView.image {
       
-      self.displayImage = selectedFilter.(image, context)
+      imageView.image = selectedFilter(displayImage, context)
     }
  
   }

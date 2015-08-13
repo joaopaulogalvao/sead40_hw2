@@ -109,10 +109,10 @@
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="constraints">
+                                <exclude reference="m8b-mP-0MQ"/>
                                 <exclude reference="daK-oR-IiJ"/>
                                 <include reference="fzu-bj-lHR"/>
                                 <include reference="OLn-Sl-3Ga"/>
-                                <exclude reference="m8b-mP-0MQ"/>
                             </mask>
                         </variation>
                     </view>
@@ -219,10 +219,10 @@
                                 <exclude reference="mb5-YK-ewM"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="1Jq-Sa-68B"/>
                                 <exclude reference="4Om-sY-gLf"/>
                                 <exclude reference="8SW-Dl-CoL"/>
                                 <exclude reference="FRl-4V-qZa"/>
-                                <exclude reference="1Jq-Sa-68B"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -230,10 +230,10 @@
                                 <include reference="mb5-YK-ewM"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="1Jq-Sa-68B"/>
                                 <include reference="4Om-sY-gLf"/>
                                 <include reference="8SW-Dl-CoL"/>
                                 <include reference="FRl-4V-qZa"/>
-                                <include reference="1Jq-Sa-68B"/>
                             </mask>
                         </variation>
                     </view>
