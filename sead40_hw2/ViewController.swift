@@ -80,6 +80,8 @@ class ViewController: UIViewController {
     // Set picker dataSource
     collectionViewFilters.dataSource = self
     
+    imageView.image = UIImage(named: "placeholder.jpeg")
+    
     if UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Pad {
       
     }
@@ -165,6 +167,7 @@ class ViewController: UIViewController {
     // Show Cancel Action
     alert.addAction(cancelAction)
     
+    displayImage = UIImage(named: "placeholder.jpeg")
     
     /*
     
@@ -274,8 +277,8 @@ class ViewController: UIViewController {
   }
   
 }
-  // MARK: - UICollectionViewDataSource
-extension ViewController : UICollectionViewDataSource {
+  // MARK: - UICollectionViewDataSource & UICollectionViewDelegate
+extension ViewController : UICollectionViewDataSource, UICollectionViewDelegate {
   func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return filters.count
   }
@@ -292,8 +295,14 @@ extension ViewController : UICollectionViewDataSource {
       cell.imgViewCollectionCell.image = filteredImage
     }
     
-    
     return cell
+  }
+  
+  func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    
+    
+    self.imageView.image = displayImage
+    
   }
 }
 

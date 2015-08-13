@@ -19,6 +19,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XFp-VU-tA8">
+                                <rect key="frame" x="16" y="72" width="568" height="315"/>
+                                <color key="backgroundColor" red="1" green="0.59999999999999998" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2qj-uH-3Qc">
                                 <rect key="frame" x="277" y="501" width="46" height="30"/>
                                 <state key="normal" title="Button">
@@ -65,9 +69,6 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XFp-VU-tA8">
-                                <rect key="frame" x="16" y="72" width="568" height="315"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -84,7 +85,9 @@
                             </constraint>
                             <constraint firstItem="XFp-VU-tA8" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="e9N-Jh-wUy"/>
                             <constraint firstItem="XFp-VU-tA8" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" multiplier="0.8" id="fHL-xP-hc6"/>
-                            <constraint firstItem="2qj-uH-3Qc" firstAttribute="top" secondItem="XFp-VU-tA8" secondAttribute="bottom" constant="8" id="fzu-bj-lHR"/>
+                            <constraint firstItem="2qj-uH-3Qc" firstAttribute="top" secondItem="XFp-VU-tA8" secondAttribute="bottom" constant="8" id="fzu-bj-lHR">
+                                <variation key="widthClass=compact" constant="8"/>
+                            </constraint>
                             <constraint firstItem="XFp-VU-tA8" firstAttribute="height" secondItem="kh9-bI-dsS" secondAttribute="height" multiplier="0.8" id="gaG-kk-Bh2"/>
                             <constraint firstItem="9Ms-a8-qo6" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="jNk-54-rce"/>
                             <constraint firstItem="9Ms-a8-qo6" firstAttribute="top" secondItem="XFp-VU-tA8" secondAttribute="bottom" constant="6" id="m8b-mP-0MQ"/>
