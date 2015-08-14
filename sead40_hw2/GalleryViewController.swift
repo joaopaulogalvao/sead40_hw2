@@ -89,7 +89,7 @@ extension GalleryViewController : UICollectionViewDelegate {
     
     // Delegation order - Pyramid -> UIViewController -> Gallery -> collectionView
     if let asset = fetchResult[indexPath.row] as? PHAsset {
-      PHCachingImageManager.defaultManager().requestImageForAsset(asset, targetSize: kTestCGSize, contentMode: PHImageContentMode.AspectFill, options: nil, resultHandler: { (image , info) -> Void in
+      PHCachingImageManager.defaultManager().requestImageForAsset(asset, targetSize: finalImage, contentMode: PHImageContentMode.AspectFill, options: nil, resultHandler: { (image , info) -> Void in
         if let image = image {
           
           //Gallery view controller gets the image from UICollectionView and send to UIViewController 

@@ -234,6 +234,7 @@ class ViewController: UIViewController {
     
   }
   
+  
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier == "ShowGallery" {
       if let galleryViewController = segue.destinationViewController as? GalleryViewController {
@@ -345,20 +346,6 @@ extension ViewController : UIImagePickerControllerDelegate, UINavigationControll
   func imagePickerControllerDidCancel(picker: UIImagePickerController) {
     self.picker.dismissViewControllerAnimated(true, completion: nil)
     println("Picker Cancelled")
-  }
-  
-  // MARK: - UIActionSheetDelegate
-  func actionSheet(actionSheet: UIActionSheet, didDismissWithButtonIndex buttonIndex: Int) {
-    switch buttonIndex{
-      
-    case 0:
-      println("selected camera")
-      self.presentViewController(self.picker, animated: true, completion: nil)
-      break
-    default:
-      println("selected")
-      break
-    }
   }
   
   
