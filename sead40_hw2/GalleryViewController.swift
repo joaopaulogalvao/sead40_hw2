@@ -9,16 +9,22 @@
 import UIKit
 import Photos
 
+
+
 class GalleryViewController: UIViewController {
 
   @IBOutlet weak var collectionViewGallery: UICollectionView!
   
   
+  // MARK: - Size properties
   var fetchResult : PHFetchResult!
   let cellSize = CGSize(width: 100, height: 100)
-  var desiredFinalImageSize : CGSize!
+  var finalImage : CGSize!
   var startingScale : CGFloat = 0
   var scale : CGFloat = 0
+  
+  // MARK: - Constants
+  let kTestCGSize = CGSize(width: 50, height: 50)
 
   
     override func viewDidLoad() {
@@ -72,6 +78,17 @@ extension GalleryViewController :  UICollectionViewDataSource {
 }
 
 extension GalleryViewController : UICollectionViewDelegate {
+  
+  func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    
+    if let asset = fetchResult[indexPath.row] as? PHAsset {
+      PHCachingImageManager.defaultManager().requestImageForAsset(asset, targetSize: kTestCGSize, contentMode: PHImageContentMode.AspectFill, options: nil, resultHandler: { (image , info) -> Void in
+        if let image = image {
+          println("Gallery Cell selected \(indexPath.row)")
+        }
+      })
+    }
+  }
   
 }
 
