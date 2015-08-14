@@ -234,6 +234,15 @@ class ViewController: UIViewController {
     
   }
   
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if segue.identifier == "ShowGallery" {
+      if let galleryViewController = segue.destinationViewController as? GalleryViewController {
+        galleryViewController.delegate = self
+        galleryViewController.finalImage = imageView.frame.size
+      }
+    }
+  }
+  
   
   // MARK: - Helper Methods
   func enterFilterMode () {
@@ -355,6 +364,13 @@ extension ViewController : UIImagePickerControllerDelegate, UINavigationControll
   
 }
 
+
+// MARK: - ImageSelectedDelegate
+extension ViewController : ImageSelectedDelegate {
+  func controllerDidSelectImage(newImage: UIImage) {
+    displayImage = newImage
+  }
+}
 
 
 

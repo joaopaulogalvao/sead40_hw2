@@ -9,12 +9,17 @@
 import UIKit
 import Photos
 
+protocol ImageSelectedDelegate : class {
+  func controllerDidSelectImage(UIImage) -> (Void)
+}
 
 
 class GalleryViewController: UIViewController {
 
   @IBOutlet weak var collectionViewGallery: UICollectionView!
   
+  //Set our own delegate property to notify who we want to be the delegate
+  weak var delegate : ImageSelectedDelegate?
   
   // MARK: - Size properties
   var fetchResult : PHFetchResult!
@@ -77,14 +82,21 @@ extension GalleryViewController :  UICollectionViewDataSource {
   
 }
 
+
 extension GalleryViewController : UICollectionViewDelegate {
   
   func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
     
+    // Delegation order - Pyramid -> UIViewController -> Gallery -> collectionView
     if let asset = fetchResult[indexPath.row] as? PHAsset {
       PHCachingImageManager.defaultManager().requestImageForAsset(asset, targetSize: kTestCGSize, contentMode: PHImageContentMode.AspectFill, options: nil, resultHandler: { (image , info) -> Void in
         if let image = image {
+          
+          //Gallery view controller gets the image from UICollectionView and send to UIViewController 
+          self.delegate?.controllerDidSelectImage(image)
+          
           println("Gallery Cell selected \(indexPath.row)")
+          self.navigationController?.popViewControllerAnimated(true)
         }
       })
     }
