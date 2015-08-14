@@ -15,6 +15,11 @@ class GalleryViewController: UIViewController {
   
   
   var fetchResult : PHFetchResult!
+  let cellSize = CGSize(width: 100, height: 100)
+  var desiredFinalImageSize : CGSize!
+  var startingScale : CGFloat = 0
+  var scale : CGFloat = 0
+
   
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,9 +59,14 @@ extension GalleryViewController :  UICollectionViewDataSource {
   func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
     let cell = collectionViewGallery.dequeueReusableCellWithReuseIdentifier("GalleryCell", forIndexPath: indexPath) as! CollectionViewCell
     if let asset = fetchResult[indexPath.row] as? PHAsset {
-             PHCachingImageManager.defaultManager().requestImageForAsset(<#asset: PHAsset!#>, targetSize: <#CGSize#>, contentMode: <#PHImageContentMode#>, options: <#PHImageRequestOptions!#>, resultHandler: <#((UIImage!, [NSObject : AnyObject]!) -> Void)!##(UIImage!, [NSObject : AnyObject]!) -> Void#>)
+      PHCachingImageManager.defaultManager().requestImageForAsset(asset, targetSize: cellSize, contentMode: PHImageContentMode.AspectFill, options: nil, resultHandler: { (image, info) -> Void in
+        if let image = image {
+          println("calling request handler for row :\(indexPath.row) for image size: \(image.size)")
+          cell.imgViewCollectionCell.image = image
+        }
+      })
     }
-    
+    return cell
   }
   
 }
