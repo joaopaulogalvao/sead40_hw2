@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6C34EC631B7D5FAC0048378B /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C34EC621B7D5FAC0048378B /* GalleryViewController.swift */; };
 		6CB6E68E1B797A5E008FA1A3 /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CB6E68D1B797A5E008FA1A3 /* libstdc++.6.dylib */; };
 		6CB6E6901B7AB2F6008FA1A3 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB6E68F1B7AB2F6008FA1A3 /* Keys.swift */; };
 		6CB6E6941B7BBF2A008FA1A3 /* TimeLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB6E6931B7BBF2A008FA1A3 /* TimeLineViewController.swift */; };
@@ -47,6 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6C34EC621B7D5FAC0048378B /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		6CB6E68D1B797A5E008FA1A3 /* libstdc++.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.dylib"; path = "usr/lib/libstdc++.6.dylib"; sourceTree = SDKROOT; };
 		6CB6E68F1B7AB2F6008FA1A3 /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		6CB6E6931B7BBF2A008FA1A3 /* TimeLineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeLineViewController.swift; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 				6CB6E6931B7BBF2A008FA1A3 /* TimeLineViewController.swift */,
 				6CB6E6971B7BEEDD008FA1A3 /* FilterService.swift */,
 				6CB6E69D1B7D099B008FA1A3 /* ImageResizer.swift */,
+				6C34EC621B7D5FAC0048378B /* GalleryViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 				6CB6E69A1B7C2381008FA1A3 /* CollectionViewCell.swift in Sources */,
 				6CB6E6981B7BEEDD008FA1A3 /* FilterService.swift in Sources */,
 				6CB6E6961B7BC3AC008FA1A3 /* TimeLineCell.swift in Sources */,
+				6C34EC631B7D5FAC0048378B /* GalleryViewController.swift in Sources */,
 				6CB6E69E1B7D099B008FA1A3 /* ImageResizer.swift in Sources */,
 				6CF380611B7949D6005E05C8 /* AppDelegate.swift in Sources */,
 			);

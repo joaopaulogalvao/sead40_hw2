@@ -170,6 +170,14 @@ class ViewController: UIViewController {
     
     displayImage = UIImage(named: "placeholder.jpeg")
     
+    let galleryAction = UIAlertAction(title: "Gallery", style: UIAlertActionStyle.Default) { (alert) -> Void in
+      self.performSegueWithIdentifier("ShowGallery", sender: self)
+    }
+    
+    // Show gallery Action
+    alert.addAction(galleryAction)
+    
+    
     /*
     
     ----------------------------------------------------------
@@ -226,6 +234,8 @@ class ViewController: UIViewController {
     
   }
   
+  
+  // MARK: - Helper Methods
   func enterFilterMode () {
     leadingImageViewConstraint.constant = kleadingImageViewConstraint
     trailingImageViewConstraint.constant = KtrailingImageViewConstraintBuffer
