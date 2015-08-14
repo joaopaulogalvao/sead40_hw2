@@ -7,13 +7,24 @@
 //
 
 import UIKit
+import Photos
 
 class GalleryViewController: UIViewController {
 
+  @IBOutlet weak var collectionViewGallery: UICollectionView!
+  
+  
+  var fetchResult : PHFetchResult!
+  
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+      collectionViewGallery.delegate = self
+      collectionViewGallery.dataSource = self
+      
+      fetchResult = PHAsset.fetchAssetsWithMediaType(PHAssetMediaType.Image, options: nil)
+      
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,3 +44,24 @@ class GalleryViewController: UIViewController {
     */
 
 }
+
+extension GalleryViewController :  UICollectionViewDataSource {
+  
+  func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return fetchResult.count
+  }
+  
+  func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    let cell = collectionViewGallery.dequeueReusableCellWithReuseIdentifier("GalleryCell", forIndexPath: indexPath) as! CollectionViewCell
+    if let asset = fetchResult[indexPath.row] as? PHAsset {
+             PHCachingImageManager.defaultManager().requestImageForAsset(<#asset: PHAsset!#>, targetSize: <#CGSize#>, contentMode: <#PHImageContentMode#>, options: <#PHImageRequestOptions!#>, resultHandler: <#((UIImage!, [NSObject : AnyObject]!) -> Void)!##(UIImage!, [NSObject : AnyObject]!) -> Void#>)
+    }
+    
+  }
+  
+}
+
+extension GalleryViewController : UICollectionViewDelegate {
+  
+}
+
