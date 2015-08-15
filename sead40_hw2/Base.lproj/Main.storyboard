@@ -126,11 +126,69 @@
                         <outlet property="leadingImageViewConstraint" destination="tQ8-E5-Rpy" id="8Ql-rW-7hB"/>
                         <outlet property="topImageViewConstraint" destination="Ghd-sP-qgD" id="ByN-0z-i0g"/>
                         <outlet property="trailingImageViewConstraint" destination="e9N-Jh-wUy" id="Zhd-eb-X6f"/>
+                        <segue destination="G0j-ZU-ghk" kind="show" identifier="ShowGallery" id="Tji-yx-aDj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2037" y="-149"/>
+            <point key="canvasLocation" x="1872" y="-187"/>
+        </scene>
+        <!--Gallery View Controller-->
+        <scene sceneID="Wcx-1x-c3w">
+            <objects>
+                <viewController id="G0j-ZU-ghk" customClass="GalleryViewController" customModule="sead40_hw2" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2QV-UT-ILp"/>
+                        <viewControllerLayoutGuide type="bottom" id="aWE-Zt-A8B"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gyY-6N-FkL">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="M9e-mk-ZPo">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="fei-MQ-Cxo">
+                                    <size key="itemSize" width="100" height="100"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GalleryCell" id="fkl-rw-wK8" customClass="CollectionViewCell" customModule="sead40_hw2" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QMs-cS-MrP">
+                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <connections>
+                                            <outlet property="imgViewCollectionCell" destination="QMs-cS-MrP" id="4oE-dc-LuG"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="M9e-mk-ZPo" firstAttribute="leading" secondItem="gyY-6N-FkL" secondAttribute="leadingMargin" constant="-16" id="GOk-KU-c5G"/>
+                            <constraint firstItem="M9e-mk-ZPo" firstAttribute="bottom" secondItem="gyY-6N-FkL" secondAttribute="bottomMargin" id="I2d-o1-App"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="M9e-mk-ZPo" secondAttribute="trailing" constant="-16" id="qJD-pz-cfn"/>
+                            <constraint firstItem="M9e-mk-ZPo" firstAttribute="top" secondItem="gyY-6N-FkL" secondAttribute="topMargin" id="zei-3L-qN3"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionViewGallery" destination="M9e-mk-ZPo" id="mGL-AM-hvD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L0b-FH-QIR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2604" y="-187"/>
         </scene>
         <!--Home-->
         <scene sceneID="ggs-bS-Pt3">

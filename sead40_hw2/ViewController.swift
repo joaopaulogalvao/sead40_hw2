@@ -170,6 +170,14 @@ class ViewController: UIViewController {
     
     displayImage = UIImage(named: "placeholder.jpeg")
     
+    let galleryAction = UIAlertAction(title: "Gallery", style: UIAlertActionStyle.Default) { (alert) -> Void in
+      self.performSegueWithIdentifier("ShowGallery", sender: self)
+    }
+    
+    // Show gallery Action
+    alert.addAction(galleryAction)
+    
+    
     /*
     
     ----------------------------------------------------------
@@ -226,6 +234,18 @@ class ViewController: UIViewController {
     
   }
   
+  
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if segue.identifier == "ShowGallery" {
+      if let galleryViewController = segue.destinationViewController as? GalleryViewController {
+        galleryViewController.delegate = self
+        galleryViewController.finalImage = imageView.frame.size
+      }
+    }
+  }
+  
+  
+  // MARK: - Helper Methods
   func enterFilterMode () {
     leadingImageViewConstraint.constant = kleadingImageViewConstraint
     trailingImageViewConstraint.constant = KtrailingImageViewConstraintBuffer
@@ -328,23 +348,16 @@ extension ViewController : UIImagePickerControllerDelegate, UINavigationControll
     println("Picker Cancelled")
   }
   
-  // MARK: - UIActionSheetDelegate
-  func actionSheet(actionSheet: UIActionSheet, didDismissWithButtonIndex buttonIndex: Int) {
-    switch buttonIndex{
-      
-    case 0:
-      println("selected camera")
-      self.presentViewController(self.picker, animated: true, completion: nil)
-      break
-    default:
-      println("selected")
-      break
-    }
-  }
-  
   
 }
 
+
+// MARK: - ImageSelectedDelegate
+extension ViewController : ImageSelectedDelegate {
+  func controllerDidSelectImage(newImage: UIImage) {
+    displayImage = newImage
+  }
+}
 
 
 
