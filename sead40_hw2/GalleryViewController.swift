@@ -23,15 +23,17 @@ class GalleryViewController: UIViewController {
   
   // MARK: - Size properties
   var fetchResult : PHFetchResult!
+  //var assetCollection : PHAssetCollection!
   let cellSize = CGSize(width: 100, height: 100)
   var finalImage : CGSize!
   var startingScale : CGFloat = 0
   var scale : CGFloat = 0
+  //let albumName = "My Album"
   
   // MARK: - Constants
   let kTestCGSize = CGSize(width: 50, height: 50)
 
-  
+  // MARK: - Life Cycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -41,7 +43,49 @@ class GalleryViewController: UIViewController {
       
       fetchResult = PHAsset.fetchAssetsWithMediaType(PHAssetMediaType.Image, options: nil)
       
+//      let fetchOptions = PHFetchOptions()
+//      let collection = PHAssetCollection.fetchAssetCollectionsWithType(.Album, subtype: .Any, options: fetchOptions)
+//      if (collection.firstObject != nil) {
+//        self.assetCollection = collection.firstObject as! PHAssetCollection
+//      } else {
+//        PHPhotoLibrary.sharedPhotoLibrary().performChanges({ () -> Void in
+//          let request = PHAssetCollectionChangeRequest.creationRequestForAssetCollectionWithTitle(self.albumName)
+//        }, completionHandler: { (success, error) -> Void in
+//          println("success")
+//        })
+//      }
+      
+      
+      let pinchGesture = UIPinchGestureRecognizer(target: self, action: "pinchRecognized:")
+      collectionViewGallery.addGestureRecognizer(pinchGesture)
+      
     }
+  
+  
+  func pinchRecognized(pinch : UIPinchGestureRecognizer) {
+    
+    if pinch.state == UIGestureRecognizerState.Began {
+      println("began!")
+      startingScale = pinch.scale
+    }
+    
+    if pinch.state == UIGestureRecognizerState.Changed {
+      println("changed!")
+    }
+    
+    if pinch.state == UIGestureRecognizerState.Ended {
+      println("ended!")
+      scale = startingScale * pinch.scale
+      let layout = collectionViewGallery.collectionViewLayout as! UICollectionViewFlowLayout
+      let newSize = CGSize(width: layout.itemSize.width * scale, height: layout.itemSize.height * scale)
+      
+      collectionViewGallery.performBatchUpdates({ () -> Void in
+        layout.itemSize = newSize
+        layout.invalidateLayout()
+        }, completion: nil )
+      
+    }
+  }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
