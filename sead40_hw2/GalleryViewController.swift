@@ -28,6 +28,7 @@ class GalleryViewController: UIViewController {
   var finalImage : CGSize!
   var startingScale : CGFloat = 0
   var scale : CGFloat = 0
+  var albumFound : Bool = false
   let albumName = "Parse Photos"
   
   // MARK: - Constants
@@ -52,12 +53,14 @@ class GalleryViewController: UIViewController {
       let collection : PHFetchResult = PHAssetCollection.fetchAssetCollectionsWithType(.Album, subtype: .Any, options: options)
       
       if (collection.firstObject != nil) {
+        self.albumFound = true
         self.assetCollection = collection.firstObject as! PHAssetCollection
       } else {
         PHPhotoLibrary.sharedPhotoLibrary().performChanges({ () -> Void in
           let request = PHAssetCollectionChangeRequest.creationRequestForAssetCollectionWithTitle(self.albumName)
         }, completionHandler: { (success, error) -> Void in
           println("success")
+          self.albumFound = {success ? true:false}()
         })
       }
       
@@ -68,6 +71,7 @@ class GalleryViewController: UIViewController {
     }
   
   
+  // MARK: - My Actions
   func pinchRecognized(pinch : UIPinchGestureRecognizer) {
     
     if pinch.state == UIGestureRecognizerState.Began {
@@ -111,6 +115,7 @@ class GalleryViewController: UIViewController {
 
 }
 
+  // MARK: - UICollectionViewDataSource
 extension GalleryViewController :  UICollectionViewDataSource {
   
   func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -132,7 +137,7 @@ extension GalleryViewController :  UICollectionViewDataSource {
   
 }
 
-
+  //MARK: - UICollectionViewDelegate
 extension GalleryViewController : UICollectionViewDelegate {
   
   func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
