@@ -23,12 +23,13 @@ class GalleryViewController: UIViewController {
   
   // MARK: - Size properties
   var fetchResult : PHFetchResult!
-  //var assetCollection : PHAssetCollection!
+  var assetCollection : PHAssetCollection!
   let cellSize = CGSize(width: 100, height: 100)
   var finalImage : CGSize!
   var startingScale : CGFloat = 0
   var scale : CGFloat = 0
-  //let albumName = "My Album"
+  var albumFound : Bool = false
+  let albumName = "Parse Photos"
   
   // MARK: - Constants
   let kTestCGSize = CGSize(width: 50, height: 50)
@@ -41,19 +42,27 @@ class GalleryViewController: UIViewController {
       collectionViewGallery.delegate = self
       collectionViewGallery.dataSource = self
       
+      
+      let options = PHFetchOptions()
+      
+      options.predicate = NSPredicate(format:"title like %@",albumName)
+      
       fetchResult = PHAsset.fetchAssetsWithMediaType(PHAssetMediaType.Image, options: nil)
       
-//      let fetchOptions = PHFetchOptions()
-//      let collection = PHAssetCollection.fetchAssetCollectionsWithType(.Album, subtype: .Any, options: fetchOptions)
-//      if (collection.firstObject != nil) {
-//        self.assetCollection = collection.firstObject as! PHAssetCollection
-//      } else {
-//        PHPhotoLibrary.sharedPhotoLibrary().performChanges({ () -> Void in
-//          let request = PHAssetCollectionChangeRequest.creationRequestForAssetCollectionWithTitle(self.albumName)
-//        }, completionHandler: { (success, error) -> Void in
-//          println("success")
-//        })
-//      }
+      // Predicate key Title is only accepted with PHAssetCollection - attention to that
+      let collection : PHFetchResult = PHAssetCollection.fetchAssetCollectionsWithType(.Album, subtype: .Any, options: options)
+      
+      if (collection.firstObject != nil) {
+        self.albumFound = true
+        self.assetCollection = collection.firstObject as! PHAssetCollection
+      } else {
+        PHPhotoLibrary.sharedPhotoLibrary().performChanges({ () -> Void in
+          let request = PHAssetCollectionChangeRequest.creationRequestForAssetCollectionWithTitle(self.albumName)
+        }, completionHandler: { (success, error) -> Void in
+          println("success")
+          self.albumFound = {success ? true:false}()
+        })
+      }
       
       
       let pinchGesture = UIPinchGestureRecognizer(target: self, action: "pinchRecognized:")
@@ -62,6 +71,7 @@ class GalleryViewController: UIViewController {
     }
   
   
+  // MARK: - My Actions
   func pinchRecognized(pinch : UIPinchGestureRecognizer) {
     
     if pinch.state == UIGestureRecognizerState.Began {
@@ -105,6 +115,7 @@ class GalleryViewController: UIViewController {
 
 }
 
+  // MARK: - UICollectionViewDataSource
 extension GalleryViewController :  UICollectionViewDataSource {
   
   func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -126,7 +137,7 @@ extension GalleryViewController :  UICollectionViewDataSource {
   
 }
 
-
+  //MARK: - UICollectionViewDelegate
 extension GalleryViewController : UICollectionViewDelegate {
   
   func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
@@ -144,6 +155,12 @@ extension GalleryViewController : UICollectionViewDelegate {
         }
       })
     }
+    PHPhotoLibrary.sharedPhotoLibrary().performChanges({ () -> Void in
+      let request = PHAssetCollectionChangeRequest(forAssetCollection: self.assetCollection, assets: self.fetchResult)
+    }, completionHandler: { (success, error) -> Void in
+      println("Success")
+    })
+    
   }
   
 }

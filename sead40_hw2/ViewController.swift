@@ -12,9 +12,6 @@ import QuartzCore
 
 class ViewController: UIViewController {
   
-  
-  
-  
   //MARK: Constraint Enter Filter Buffer Constants
   let kleadingImageViewConstraint : CGFloat = 40
   let KtrailingImageViewConstraintBuffer : CGFloat = -40
@@ -69,12 +66,13 @@ class ViewController: UIViewController {
     }
   }
   
+  // MARK: - Life cycle methods
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
     
     // Set picker delegate
-    self.picker.delegate = self
+    picker.delegate = self
     //self.picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
     
     // Set picker dataSource
@@ -125,7 +123,7 @@ class ViewController: UIViewController {
     })
     
     //Show camera action
-    self.cameraPhotoAlert.addAction(camera)
+    cameraPhotoAlert.addAction(camera)
     
     //Show photoLibrary action
     self.cameraPhotoAlert.addAction(photoLibrary)
@@ -219,6 +217,10 @@ class ViewController: UIViewController {
     // Dispose of any resources that can be recreated.
   }
   
+  override func viewWillAppear(animated: Bool) {
+    //UIImageWriteToSavedPhotosAlbum(self.displayImage, self, "image:didFinishSavingWithError:contextInfo:", nil)
+  }
+  
   // MARK: - My Actions
   @IBAction func showAction(sender: AnyObject) {
     
@@ -234,7 +236,6 @@ class ViewController: UIViewController {
     
   }
   
-  
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier == "ShowGallery" {
       if let galleryViewController = segue.destinationViewController as? GalleryViewController {
@@ -243,6 +244,18 @@ class ViewController: UIViewController {
       }
     }
   }
+  
+//  func image(image: UIImage, didFinishSavingWithError error: NSError?, contextInfo:UnsafePointer<Void>) {
+//    if error == nil {
+//      let ac = UIAlertController(title: "Saved!", message: "Your image has been saved.", preferredStyle: .Alert)
+//      ac.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+//      presentViewController(ac, animated: true, completion: nil)
+//    } else {
+//      let ac = UIAlertController(title: "Save error", message: error?.localizedDescription, preferredStyle: .Alert)
+//      ac.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+//      presentViewController(ac, animated: true, completion: nil)
+//    }
+//  }
   
   
   // MARK: - Helper Methods
