@@ -155,6 +155,12 @@ extension GalleryViewController : UICollectionViewDelegate {
         }
       })
     }
+    PHPhotoLibrary.sharedPhotoLibrary().performChanges({ () -> Void in
+      let request = PHAssetCollectionChangeRequest(forAssetCollection: self.assetCollection, assets: self.fetchResult)
+    }, completionHandler: { (success, error) -> Void in
+      println("Success")
+    })
+    
   }
   
 }
