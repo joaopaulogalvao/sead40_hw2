@@ -23,12 +23,12 @@ class GalleryViewController: UIViewController {
   
   // MARK: - Size properties
   var fetchResult : PHFetchResult!
-  //var assetCollection : PHAssetCollection!
+  var assetCollection : PHAssetCollection!
   let cellSize = CGSize(width: 100, height: 100)
   var finalImage : CGSize!
   var startingScale : CGFloat = 0
   var scale : CGFloat = 0
-  //let albumName = "My Album"
+  let albumName = "Parse Photos"
   
   // MARK: - Constants
   let kTestCGSize = CGSize(width: 50, height: 50)
@@ -41,19 +41,25 @@ class GalleryViewController: UIViewController {
       collectionViewGallery.delegate = self
       collectionViewGallery.dataSource = self
       
+      
+      let options = PHFetchOptions()
+      
+      options.predicate = NSPredicate(format:"title like %@",albumName)
+      
       fetchResult = PHAsset.fetchAssetsWithMediaType(PHAssetMediaType.Image, options: nil)
       
-//      let fetchOptions = PHFetchOptions()
-//      let collection = PHAssetCollection.fetchAssetCollectionsWithType(.Album, subtype: .Any, options: fetchOptions)
-//      if (collection.firstObject != nil) {
-//        self.assetCollection = collection.firstObject as! PHAssetCollection
-//      } else {
-//        PHPhotoLibrary.sharedPhotoLibrary().performChanges({ () -> Void in
-//          let request = PHAssetCollectionChangeRequest.creationRequestForAssetCollectionWithTitle(self.albumName)
-//        }, completionHandler: { (success, error) -> Void in
-//          println("success")
-//        })
-//      }
+      // Predicate key Title is only accepted with PHAssetCollection - attention to that
+      let collection : PHFetchResult = PHAssetCollection.fetchAssetCollectionsWithType(.Album, subtype: .Any, options: options)
+      
+      if (collection.firstObject != nil) {
+        self.assetCollection = collection.firstObject as! PHAssetCollection
+      } else {
+        PHPhotoLibrary.sharedPhotoLibrary().performChanges({ () -> Void in
+          let request = PHAssetCollectionChangeRequest.creationRequestForAssetCollectionWithTitle(self.albumName)
+        }, completionHandler: { (success, error) -> Void in
+          println("success")
+        })
+      }
       
       
       let pinchGesture = UIPinchGestureRecognizer(target: self, action: "pinchRecognized:")
